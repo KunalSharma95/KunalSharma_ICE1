@@ -5,45 +5,39 @@
  // @author Kunal Sharma
 
 
-import java.util.Random; // needed for randomization
-public class Card 
+// Kunal Sharma 213065933 
+
+import java.util.Random;
+import java.util.Scanner;
+public class CardGameICE1
 {
-  private String suit;
-  private String value; //works better as a String than as an int
-public static final String[] SUITS={"diamonds","clubs","spades","hearts"};
-public static final String[] values = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};   
-     Random r= new Random(); // initially I tried Math.random()*4 but that didn't work
-    int randomValue=r.nextInt(SUITS.length); // created 2 variables that run through each array as indexes.
-    int randomValue2 = r.nextInt(values.length);
-    
-
-public String getSuits() {
-    suit = SUITS[randomValue];   
-    return suit;
-    }
-
-    
-    public void setSuits(String suit) {
-        suit = SUITS[randomValue];
-        this.suit = suit;
+  
+    public static void main(String[] args)
+    {        
+        Scanner in = new Scanner(System.in);
+        int count = 0; // keeps score
         
-    }
+        Card[] magicHand = new Card[7];
+        for (int i=0;i<magicHand.length;i++)
+        {
+           Card c= new Card();//object
+           c.setValue("");
+           c.setSuits("");        
+           
+           magicHand[i]=c;//saving object in array                              
+        System.out.println("Enter a card suit followed by 'of' and then its corresponding rank!");
+       String guessHand= in.nextLine();
+        if (guessHand.equals(c.toString())) { // neccessary to convert object to string in order to compare
+          System.out.println("You guessed correctly!");
+          count++; //updates the score
+        }else {
+             System.out.println("Incorrect! The card was actually " + c); // reveals card
+        }
+        }
+         
+         System.out.println("You guessed " + count + " cards correctly!"); //prints score at end of loop
     
-    public String getValue() {
-       value = values[randomValue2];  
-        return value;
     }
-  
-    public void setValue(String value) {
-     value = values[randomValue2];  
-        this.value = value;
-    }
-  
-    public @Override String toString()
-    {
-        return this.value + " of " + this.suit;
-    }
-      
     
 }
 
